@@ -11,7 +11,7 @@ public class MoreArrayFun {
 	public static void main(String[] args) {
 		
 		String[] testArray = {"Hi", "Java", "Christian Minecraft Server", "heck", "This is a string", "Robby is a really thicc boi", "succ", "zucc", 
-				"n0 sw3aringg", "robux", "shrek is the best anime", "dab on hatorz"};
+				"n0 sw3aringg", "free robux", "shrek is the best anime", "dab on hatorz", "download some free ram", "Naruto", "here come dat boi"};
 		
 		printArrInRandomOrder(testArray);
 		
@@ -59,23 +59,42 @@ public class MoreArrayFun {
 	public static void printArrInRandomOrder(String[] s) 
 	{
 		
-		int randomIndex = new Random().nextInt(s.length-1);
+		int randomIndex = new Random().nextInt(s.length);
 		
-		String[] newArray = new String[s.length-1];
+		String[] newArray = new String[s.length];
 		
-		String[] alreadyPrinted = new String[newArray.length];
+		int[] alreadyPrinted = new int[newArray.length];
 		
 		for (int i = 0; i < newArray.length; i++) {
-			if(i != randomIndex) {
-				newArray[i] = s[i];
-				alreadyPrinted[i] = newArray[i];
+			newArray[i] = "0";
+			alreadyPrinted[i] = -1;
+		}
+		
+		String randomWord = s[randomIndex];
+
+		newArray[0] = randomWord;
+	
+		for (int i = 0; i < newArray.length; i++) {
+			if(s[i].equals(randomWord)) {
+				alreadyPrinted[0] = i;
 			}
 		}
 		
-		limit++;	
-
-		if(limit != s.length) {
-		printArrInRandomOrder(s);
+		for (int i = 1; i < s.length; i++) {
+			
+			randomIndex = new Random().nextInt(s.length-1);
+		
+			if(alreadyPrinted[i] == i) {
+				i--;
+			}else {
+				alreadyPrinted[i] = i;
+				newArray[i] = s[i];
+			}
+			
+		}
+		
+		for (int i = 0; i < newArray.length; i++) {
+			System.out.println(newArray[i]);
 		}
 		
 	}
